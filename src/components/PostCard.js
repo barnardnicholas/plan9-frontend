@@ -14,21 +14,37 @@ export default function PostCard({ post }) {
   } = post;
   return (
     <li key={post_id}>
-      <Container fluid>
+      <Container>
         <Row>
           <Col>
-            <h4>Date: {post_date || "-"}</h4>
+            <p>
+              <strong>Date:</strong> {post_date || "-"}
+            </p>
+            <p>
+              <strong>UID:</strong> {post_id || "-"}
+            </p>
+            <p>
+              <strong>Status:</strong> {post_status || "-"}
+            </p>
           </Col>
-          <Col>UID: {post_id || "-"}</Col>
-          <Col>Status: {post_status || "-"}</Col>
-          <Col>Screengrab: {post_screengrab ? "True" : "-"}</Col>
-          <Col>Uploaded Image: {post_uploaded_image ? "True" : "-"}</Col>
-          <Col>Sent Tweet: {post_sent_tweet ? "True" : "-"}</Col>
           <Col>
-            <img src={`${post_image}`} width="80" height="auto" />
+            <p>
+              <strong>Screengrab:</strong> {post_screengrab ? "True" : "-"}
+            </p>
+            <p>
+              <strong>Uploaded Image:</strong>{" "}
+              {post_uploaded_image ? "True" : "-"}
+            </p>
+            <p>
+              <strong>Sent Tweet:</strong> {post_sent_tweet ? "True" : "-"}
+            </p>
           </Col>
         </Row>
       </Container>
+
+      {/*
+            <img src={`${post_image}`} width="80" height="auto" />
+          */}
     </li>
   );
 }

@@ -27,7 +27,7 @@ export default class PostLog extends Component {
             const postsArray = makePostsArray(context.state.posts);
 
             return (
-              <section>
+              <div className="post-log">
                 <h3>Post Log</h3>
                 <button onClick={handleFetchPosts}>Fetch Posts</button>
                 <ol>
@@ -35,7 +35,7 @@ export default class PostLog extends Component {
                     return <PostCard post={post} key={post.post_id} />;
                   })}
                 </ol>
-              </section>
+              </div>
             );
           }}
         </MyContext.Consumer>

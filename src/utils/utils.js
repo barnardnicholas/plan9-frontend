@@ -18,7 +18,6 @@ export const formatTimeStamp = (timeMS = 0) => {
     return null;
   } else {
     const date = new Date(timeMS);
-    console.log(date);
     const year = date.getFullYear();
     const month = months[date.getMonth()];
     const day = date.getDate();

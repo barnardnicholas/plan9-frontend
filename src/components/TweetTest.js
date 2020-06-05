@@ -8,7 +8,7 @@ export default function TweetTest() {
     const time = timestamp();
     const formattedTime = utils.formatTimeStamp(time);
     const status = `TEST TWEET = ${formattedTime}`;
-    twitter.postTestTweet(status);
+    // twitter.postTestTweet(status);
   };
   return <button onClick={handleTestTweet}>Post Test Tweet (Text only)</button>;
 }

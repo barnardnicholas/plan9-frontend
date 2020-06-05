@@ -1,9 +1,12 @@
 import React, { Component, Suspense } from "react";
 import { MyProvider, MyContext } from "./Context";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Login from "./components/Login";
-import Main from "./components/Dashboard";
+import Dashboard from "./components/Dashboard";
+import Header from "./components/Header";
+import RepeatTest from "./components/RepeatTest";
 
 const loading = <p>Loading...</p>;
 
@@ -16,12 +19,6 @@ const renderLogin = (
 );
 
 function App() {
-  const handleSignOut = (context) => {
-    const cb = () => {
-      console.log("Signed out");
-    };
-    context.logout(cb);
-  };
   return (
     <MyProvider>
       <div className="App">
@@ -30,21 +27,8 @@ function App() {
             if (context.state.currentUid) {
               return (
                 <Suspense fallback={loading}>
-                  <h1>Plan 9 Frame-By-Frame</h1>
-                  <p>
-                    {`Logged in as ${
-                      context.state.currentDisplayName ||
-                      context.state.currentEmail
-                    } `}
-                    <button
-                      onClick={() => {
-                        handleSignOut(context);
-                      }}
-                    >
-                      Sign Out
-                    </button>
-                  </p>
-                  <Main />
+                  <Header />
+                  <Dashboard />
                 </Suspense>
               );
             } else {

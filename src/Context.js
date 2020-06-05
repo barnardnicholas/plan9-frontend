@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import * as api from "./api/api.js";
 
+let testInterval = null;
+
 export const MyContext = React.createContext();
 
 export class MyProvider extends Component {
@@ -186,6 +188,23 @@ export class MyProvider extends Component {
     api.postPost(cb, data);
   };
 
+  // Bot
+  repeatTestStart = () => {
+    console.log("repeatTestStart");
+    testInterval = setInterval(() => {
+      const cb = (post) => {
+        console.log("repeatTestPost CB");
+      };
+      this.postPost(cb);
+    }, 10000);
+  };
+
+  repeatTestStop = () => {
+    console.log("repeatTestStop");
+    clearInterval(testInterval);
+    testInterval = null;
+  };
+
   render() {
     return (
       <MyContext.Provider
@@ -198,6 +217,8 @@ export class MyProvider extends Component {
           logout: this.logout,
           updateUserInfo: this.updateUserInfo,
           checkForCurrentUser: this.checkForCurrentUser,
+          repeatTestStart: this.repeatTestStart,
+          repeatTestStop: this.repeatTestStop,
         }}
       >
         {this.props.children}
