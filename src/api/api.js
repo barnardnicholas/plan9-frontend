@@ -72,61 +72,30 @@ export const postPost = (cb, data) => {
 
 // User Authentication --------------------------------------
 
-export const userSignIn = (
-  email,
-  password,
-  cb = () => {
-    console.log("ERROR - no callback function provided");
-  }
-) => {
-  firebase
+// Sign into Firebase
+export const userSignIn = (email, password) => {
+  return firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then((response) => {
-      const {
-        uid,
-        email,
-        emailVerified,
-        phoneNumber,
-        displayName,
-        photoURL,
-        isAnonymous,
-      } = response.user;
-      cb({
-        uid: uid === null ? "" : uid,
-        email: email === null ? "" : email,
-        emailVerified: emailVerified === null ? "" : emailVerified,
-        phoneNumber: phoneNumber === null ? "" : phoneNumber,
-        displayName: displayName === null ? "" : displayName,
-        photoURL: photoURL === null ? "" : photoURL,
-        isAnonymous: isAnonymous === null ? "" : isAnonymous,
-      });
+    .then(() => {
+      return Promise.resolve();
     })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // console.log(errorCode, errorMessage);
-      cb({ error });
+    .catch(() => {
+      return Promise.reject();
     });
 };
 
-export const userSignOut = (
-  cb = () => {
-    console.log("ERROR - no callback function provided");
-  }
-) => {
-  firebase
+// Sign out of Firebase
+export const userSignOut = () => {
+  return firebase
     .auth()
     .signOut()
-    .then(
-      () => {
-        console.log("Signed Out");
-        cb();
-      },
-      (error) => {
-        console.error("Sign Out Error", error);
-      }
-    );
+    .then(() => {
+      return Promise.resolve();
+    })
+    .catch(() => {
+      return Promise.reject();
+    });
 };
 
 export const editUserInfo = (

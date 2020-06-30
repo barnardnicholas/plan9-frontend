@@ -9,4 +9,14 @@ const postSchema = {
   post_date: "",
 };
 
+const dbSchema = {
+  state: {
+    is_playing: false,
+
+  },
+  posts: [],
+  backend_logs: [],
+  uptime_logs: []
+}
+
 module.exports = { postSchema };
