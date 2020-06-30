@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import ComingSoon from "./components/ComingSoon";
+import TwitterFeed from "./components/TwitterFeed";
 
 const loading = <p>Loading...</p>;
 
@@ -21,9 +22,10 @@ function App() {
   return (
     <div className="App">
       <Suspense fallback={loading}>
+        <ComingSoon />
         {/* <Header /> */}
         {/* <Dashboard /> */}
-        <ComingSoon />
+        {/* <TwitterFeed /> */}
       </Suspense>
     </div>
   );

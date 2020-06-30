@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Aire Exterior";
+  src: url("./assets/AireExterior.ttf") format("truetype");
+}
+
 body,
 html {
   background-color: #161616;
@@ -15,7 +20,9 @@ button {
   color: inherit;
   background-color: transparent;
 }
-
+h1 {
+  font-family: "Aire Exterior", "Arial Narrow", sans-serif;
+}
 ol,
 ul {
   padding: 0;

@@ -15,7 +15,7 @@ export default function ComingSoon() {
               width="auto"
               style={{ margin: "30px" }}
             />
-            <h1>Coming Soon...</h1>
+            <h1>COMING SOON...</h1>
           </center>
         </Col>
       </Row>

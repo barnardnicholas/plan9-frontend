@@ -1,5 +1,5 @@
-import { v1 as uuidv1 } from "uuid";
-import timestamp from "timestamp";
+// import { v1 as uuidv1 } from "uuid";
+// import timestamp from "timestamp";
 import * as utils from "../utils/utils";
 
 // Import Firebase
@@ -35,24 +35,24 @@ export const getPostByID = (id, cb) => {
   });
 };
 
-export const postPost = (cb, data) => {
-  const time = timestamp();
-  const uid = `p9_${time}`;
-  const formattedDate = utils.formatTimeStamp(time);
-  const newData = {
-    ...data,
-    post_id: uid,
-    post_timestamp: time,
-    post_date: formattedDate,
-  };
-  console.log("API postPost");
-  database.ref(`/posts/${uid}`).set(newData);
-  const newPostRef = database.ref(`/posts/${uid}`);
-  newPostRef.on("value", (snapshot) => {
-    cb(snapshot.val());
-    return snapshot.val();
-  });
-};
+// export const postPost = (cb, data) => {
+//   const time = timestamp();
+//   const uid = `p9_${time}`;
+//   const formattedDate = utils.formatTimeStamp(time);
+//   const newData = {
+//     ...data,
+//     post_id: uid,
+//     post_timestamp: time,
+//     post_date: formattedDate,
+//   };
+//   console.log("API postPost");
+//   database.ref(`/posts/${uid}`).set(newData);
+//   const newPostRef = database.ref(`/posts/${uid}`);
+//   newPostRef.on("value", (snapshot) => {
+//     cb(snapshot.val());
+//     return snapshot.val();
+//   });
+// };
 
 // User Authentication --------------------------------------
 

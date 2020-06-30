@@ -7,7 +7,7 @@ class Header extends Component {
     return (
       <Suspense fallback={Loading}>
         <header>
-          <h1>Plan 9 Frame-By-Frame</h1>
+          <h1>PLAN 9 FROM OUTER SPACE</h1>
           <p>
             <button onClick={() => {}}>Sign Out</button>
           </p>

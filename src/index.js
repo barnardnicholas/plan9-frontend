@@ -3,10 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
 
-admin.initializeApp();
 ReactDOM.render(
   <React.StrictMode>
     <App />
