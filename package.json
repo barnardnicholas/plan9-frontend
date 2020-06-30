@@ -7,21 +7,15 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
-    "ffmpeg-extract-frames": "^2.0.2",
     "firebase": "^7.14.6",
     "firebase-admin": "^8.12.1",
     "firebase-functions": "^3.6.2",
-    "fluent-ffmpeg": "^2.1.2",
-    "fs": "0.0.1-security",
     "http2": "^3.3.7",
     "path": "^0.12.7",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "subtitle": "^2.0.3",
-    "timestamp": "0.0.1",
-    "uuid": "^8.1.0"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
