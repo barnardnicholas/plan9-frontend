@@ -8,8 +8,8 @@ export default function TwitterFeed() {
         <Col>
           <a
             className="twitter-timeline"
-            data-width="300"
-            data-height="550"
+            data-width="100%"
+            data-height="100%"
             data-dnt="true"
             data-theme="dark"
             href="https://twitter.com/Plan9FBF?ref_src=twsrc%5Etfw"
