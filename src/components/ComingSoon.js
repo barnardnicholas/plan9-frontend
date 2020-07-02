@@ -1,21 +1,31 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import plan9poster from "../assets/plan9poster.jpg";
+import plan9logo from "../assets/Plan9_InvadingSoon_White.svg";
 
 export default function ComingSoon() {
   return (
     <Container>
-      <Row>
-        <Col>
+      <Row
+        style={{
+          height: "100vh",
+        }}
+      >
+        <Col
+          xs={12}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <center>
             <img
-              src={plan9poster}
+              src={plan9logo}
               alt="Plan 9 From Outer Space"
-              height="50%"
-              width="auto"
-              style={{ margin: "30px" }}
+              height="auto"
+              width="100%"
+              style={{ maxWidth: "300px" }}
             />
-            <h1>COMING SOON...</h1>
           </center>
         </Col>
       </Row>
