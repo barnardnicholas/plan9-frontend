@@ -7,7 +7,7 @@ export default function ComingSoon() {
     <Container>
       <Row
         style={{
-          height: "100vh",
+          height: "80vh",
         }}
       >
         <Col
