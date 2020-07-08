@@ -1,34 +1,41 @@
 import React, { Component, Suspense } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { Router, Link } from "@reach/router";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import ComingSoon from "./components/ComingSoon";
-import TwitterFeed from "./components/TwitterFeed";
+import Loading from "./components/Loading";
+import * as api from "./api/api";
+import * as auth from "./auth/firebase-auth";
 
-const loading = <p>Loading...</p>;
-
-const renderSite = <div></div>;
+// Import Firebase
+import * as firebase from "firebase";
 
 const renderLogin = (
-  <Suspense fallback={loading}>
+  <Suspense fallback={Loading}>
     <Login />
   </Suspense>
 );
 
-function App() {
-  return (
-    <div className="App">
-      <Suspense fallback={loading}>
-        <ComingSoon />
-        {/* <Header /> */}
-        {/* <Dashboard /> */}
-        {/* <TwitterFeed /> */}
-      </Suspense>
-    </div>
-  );
-}
+export default class App extends Component {
+  state = {
+    currentUser: {},
+  };
 
-export default App;
+  render() {
+    return (
+      <div className="App">
+        <Suspense fallback={Loading}>
+          <Header />
+          <Router>
+            <ComingSoon path="/" />
+            <Dashboard path="/dashboard" />
+          </Router>
+          {/* <ComingSoon /> */}
+        </Suspense>
+      </div>
+    );
+  }
+}

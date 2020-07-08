@@ -3,40 +3,46 @@ import { Container, Row, Col } from "react-bootstrap";
 
 export default function PostCard({ post }) {
   const {
-    post_id,
-    post_timestamp,
-    post_status,
-    post_image,
-    post_screengrab,
-    post_uploaded_image,
-    post_sent_tweet,
-    post_date,
+    filename,
+    frame_number,
+    frame_timestamp,
+    image_number,
+    log_date,
+    log_output,
+    log_timestamp,
+    status,
   } = post;
   return (
-    <li key={post_id}>
+    <li key={log_timestamp}>
       <Container>
         <Row>
           <Col>
             <p>
-              <strong>Date:</strong> {post_date || "-"}
+              <strong>Filename:</strong> {filename || "-"}
             </p>
             <p>
-              <strong>UID:</strong> {post_id || "-"}
+              <strong>Frame Number:</strong> {frame_number || "-"}
             </p>
             <p>
-              <strong>Status:</strong> {post_status || "-"}
+              <strong>Frame Timestamp:</strong> {frame_timestamp || "-"}
             </p>
           </Col>
           <Col>
             <p>
-              <strong>Screengrab:</strong> {post_screengrab ? "True" : "-"}
+              <strong>Image Number:</strong> {image_number || "-"}
             </p>
             <p>
-              <strong>Uploaded Image:</strong>{" "}
-              {post_uploaded_image ? "True" : "-"}
+              <strong>Log Date:</strong> {log_date || "-"}
             </p>
             <p>
-              <strong>Sent Tweet:</strong> {post_sent_tweet ? "True" : "-"}
+              <strong>Log Timestamp:</strong> {log_timestamp || "-"}
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p>
+              <strong>Status:</strong> {status || "-"}
             </p>
           </Col>
         </Row>

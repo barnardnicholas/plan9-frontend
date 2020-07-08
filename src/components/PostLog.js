@@ -2,10 +2,11 @@ import React, { Component, Suspense } from "react";
 import Loading from "./Loading";
 import PostCard from "./PostCard";
 import * as api from "../api/api";
+import * as utils from "../utils/utils";
 
 export default class PostLog extends Component {
   state = {
-    postsArray: [],
+    posts: [],
   };
 
   render() {
@@ -13,14 +14,24 @@ export default class PostLog extends Component {
       <Suspense fallback={Loading}>
         <div className="post-log">
           <h3>Post Log</h3>
-          <button>Fetch Posts</button>
           <ol>
-            {this.state.postsArray.map((post) => {
-              return <PostCard post={post} key={post.post_id} />;
+            {this.state.posts.map((post, idx) => {
+              return <PostCard post={post} key={`post_${idx}`} />;
             })}
           </ol>
         </div>
       </Suspense>
     );
+  }
+
+  componentDidMount() {
+    api
+      .getAllPosts()
+      .then((posts) => {
+        this.setState({ posts: utils.objectToArray(posts) });
+      })
+      .catch((err) => {
+        console.log(`ERROR: ${err}`);
+      });
   }
 }

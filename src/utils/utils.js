@@ -29,3 +29,9 @@ export const formatTimeStamp = (timeMS = 0) => {
     return formattedTimestamp;
   }
 };
+
+export const objectToArray = (obj) => {
+  return Object.keys(obj).map((key) => {
+    return obj[key];
+  });
+};
