@@ -3,9 +3,42 @@ import { Container, Row, Col } from "react-bootstrap";
 import Loading from "./Loading";
 import * as api from "../api/api";
 
+const buttonStyle = {
+  backgroundColor: "transparent",
+  color: "#ffffff",
+};
+
+const buttonStyleInvert = {
+  backgroundColor: "#ffffff",
+  color: "#000000",
+};
+
 export default class MasterControl extends Component {
   state = {
     last_post: {},
+    playing: false,
+  };
+
+  handlePlay = () => {
+    api
+      .playMovie()
+      .then(() => {
+        this.setState({ playing: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  handlePause = () => {
+    api
+      .stopMovie()
+      .then(() => {
+        this.setState({ playing: false });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -26,14 +59,25 @@ export default class MasterControl extends Component {
           <Container fluid>
             <Row>
               <Col>
-                <button>Play</button>
-                <button>Pause</button>
+                <button
+                  style={this.state.playing ? buttonStyleInvert : buttonStyle}
+                  onClick={this.handlePlay}
+                >
+                  Play
+                </button>
+                <button
+                  style={this.state.playing ? buttonStyle : buttonStyleInvert}
+                  onClick={this.handlePause}
+                >
+                  Pause
+                </button>
               </Col>
             </Row>
             <Row>
               <Col>
                 <p>
-                  <strong>Status:</strong> Playing
+                  <strong>Status:</strong>{" "}
+                  {this.state.playing ? "Playing" : "Paused"}
                 </p>
               </Col>
               <Col>
@@ -52,9 +96,12 @@ export default class MasterControl extends Component {
 
   componentDidMount() {
     api
-      .getLastPost()
-      .then((lastPost) => {
-        this.setState({ last_post: lastPost });
+      .getState()
+      .then((state) => {
+        this.setState({
+          last_post: state.last_post,
+          playing: state.is_playing,
+        });
       })
       .catch((err) => {
         console.log(`ERROR: ${err}`);

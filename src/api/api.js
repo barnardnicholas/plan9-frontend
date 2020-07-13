@@ -55,6 +55,7 @@ export const getCurrentUser = () => {
 
 // Database functions --------------------------------------
 
+// Get all posts
 export const getAllPosts = () => {
   return new Promise((resolve, reject) => {
     const allPostsRef = database.ref("/posts");
@@ -64,6 +65,7 @@ export const getAllPosts = () => {
   });
 };
 
+// Get single post
 export const getPostByID = (id, cb) => {
   const singlePostRef = database.ref(`/posts/${id}`);
   singlePostRef.on("value", (snapshot) => {
@@ -73,7 +75,23 @@ export const getPostByID = (id, cb) => {
   });
 };
 
-// Get last post & store locally
+// Get state
+export const getState = () => {
+  return new Promise((resolve, reject) => {
+    database
+      .ref("/state")
+      .once("value")
+      .then((snapshot) => {
+        if (snapshot.val()) {
+          resolve(snapshot.val());
+        } else {
+          reject(new Error("Failed to fetch state"));
+        }
+      });
+  });
+};
+
+// Get last post
 export const getLastPost = () => {
   return new Promise((resolve, reject) => {
     database
@@ -90,11 +108,24 @@ export const getLastPost = () => {
 };
 
 // Play movie
-const playMovie = () => {
+export const playMovie = () => {
   return new Promise((resolve, reject) => {
     database
-      .ref(`/state/playing`)
+      .ref(`/state/is_playing`)
       .set(true)
+      .then((response) => {
+        console.log(response);
+        resolve();
+      });
+  });
+};
+
+// Play movie
+export const stopMovie = () => {
+  return new Promise((resolve, reject) => {
+    database
+      .ref(`/state/is_playing`)
+      .set(false)
       .then((response) => {
         console.log(response);
         resolve();

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import plan9logo from "../assets/Plan9_InvadingSoon_White.svg";
+// import plan9LogoColour from "../assets/img/Plan9FBF_Logo_Colour-01.svg";
 
 export default function ComingSoon() {
   return (

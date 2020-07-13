@@ -28,12 +28,12 @@ export default class App extends Component {
     return (
       <div className="App">
         <Suspense fallback={Loading}>
-          <Header />
+          {/* <Header />
           <Router>
             <ComingSoon path="/" />
             <Dashboard path="/dashboard" />
-          </Router>
-          {/* <ComingSoon /> */}
+          </Router> */}
+          <ComingSoon />
         </Suspense>
       </div>
     );
