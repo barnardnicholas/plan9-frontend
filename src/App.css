@@ -62,7 +62,11 @@ button {
   text-align: center;
   padding: 20px;
 }
-
+.about img {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+}
 .tech-logos {
   padding: 20px 10px;
 }
