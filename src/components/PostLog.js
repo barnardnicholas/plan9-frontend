@@ -26,7 +26,7 @@ export default class PostLog extends Component {
 
   componentDidMount() {
     api
-      .getAllPosts()
+      .getNPosts(20)
       .then((posts) => {
         this.setState({ posts: utils.objectToArray(posts) });
       })

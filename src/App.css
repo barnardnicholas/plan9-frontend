@@ -14,11 +14,20 @@ header {
   margin-bottom: 16px;
 }
 p {
-  margin-bottom: 0 !important;
+  margin: 10px 0 10px 0;
+}
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid;
+  border-radius: 2px;
 }
 button {
   color: inherit;
   background-color: transparent;
+  outline: none;
 }
 h1 {
   font-family: "Aire Exterior", "Arial Narrow", sans-serif;
@@ -33,16 +42,43 @@ li {
 
 li,
 button,
-.dashboard-header,
-.post-log,
-.tweet-log {
+.dashboard-header {
   border: 1px solid;
   margin: 2px;
   border-radius: 4px !important;
   padding: 4px;
 }
-
+button {
+  padding-left: 8px;
+  padding-right: 8px;
+}
 .App {
   background-color: #161616;
   color: #ffffff;
+  padding: 20px;
+}
+
+.about {
+  text-align: center;
+  padding: 20px;
+}
+
+.tech-logos {
+  padding: 20px 10px;
+}
+.tech-logo-container {
+  display: flex;
+  justify-content: center;
+}
+.tech-logo-container a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tech-logo-container img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
 }

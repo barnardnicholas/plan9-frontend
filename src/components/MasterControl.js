@@ -15,7 +15,20 @@ const buttonStyleInvert = {
 
 export default class MasterControl extends Component {
   state = {
-    last_post: {},
+    last_post: {
+      frame_timeStamp: 0,
+      image_number: 0,
+      filename: "-",
+      frame_number: 0,
+      subtitle: null,
+      log_timestamp: null,
+      log_status: "-",
+      comment: "-",
+      log_date: "-",
+      log_id: 0,
+      status: "-",
+      log_output: [],
+    },
     playing: false,
   };
 
@@ -35,6 +48,35 @@ export default class MasterControl extends Component {
       .stopMovie()
       .then(() => {
         this.setState({ playing: false });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  handleSignOut = () => {
+    api.userSignOut().then(() => {
+      console.log("Signed out successfully");
+      window.location.reload(false);
+    });
+  };
+
+  handleResetLastPost = () => {
+    api
+      ._resetLastPost()
+      .then(() => {
+        console.log("Successfully reset last post");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  handleEraseDatabase = () => {
+    api
+      ._eraseAllPosts()
+      .then(() => {
+        console.log("Successfully erased database");
       })
       .catch((err) => {
         console.log(err);
@@ -72,6 +114,9 @@ export default class MasterControl extends Component {
                   Pause
                 </button>
               </Col>
+              <Col>
+                <button onClick={this.handleSignOut}>Sign Out</button>
+              </Col>
             </Row>
             <Row>
               <Col>
@@ -87,6 +132,16 @@ export default class MasterControl extends Component {
               </Col>
               <Col></Col>
               <Col></Col>
+            </Row>
+            <Row>
+              <Col>
+                <button onClick={this.handleEraseDatabase}>
+                  Erase Database
+                </button>
+                <button onClick={this.handleResetLastPost}>
+                  Reset Last Post
+                </button>
+              </Col>
             </Row>
           </Container>
         </section>

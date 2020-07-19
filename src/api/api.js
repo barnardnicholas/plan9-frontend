@@ -1,6 +1,4 @@
-// import { v1 as uuidv1 } from "uuid";
-// import timestamp from "timestamp";
-import * as utils from "../utils/utils";
+import timestamp from "timestamp";
 
 // Import Firebase
 import * as firebase from "firebase";
@@ -59,6 +57,16 @@ export const getCurrentUser = () => {
 export const getAllPosts = () => {
   return new Promise((resolve, reject) => {
     const allPostsRef = database.ref("/posts");
+    allPostsRef.on("value", (snapshot) => {
+      resolve(snapshot.val());
+    });
+  });
+};
+
+// Get n posts
+export const getNPosts = (n = 10) => {
+  return new Promise((resolve, reject) => {
+    const allPostsRef = database.ref("/posts").limitToLast(n);
     allPostsRef.on("value", (snapshot) => {
       resolve(snapshot.val());
     });
@@ -130,5 +138,52 @@ export const stopMovie = () => {
         console.log(response);
         resolve();
       });
+  });
+};
+
+// Reset last post in database
+export const _resetLastPost = () => {
+  const time = timestamp();
+  const initialLastPost = {
+    frame_timestamp: 7500,
+    image_number: 4,
+    filename: "img_004.jpg",
+    frame_number: 180,
+    subtitle: null,
+    log_timestamp: time,
+    log_status: "",
+    comment: "Manual Reset",
+    log_date: new Date(time).toLocaleString(),
+    log_id: time,
+    status: "",
+    log_output: [],
+  };
+  console.log("Performing Manual Reset of last post information...");
+  return new Promise((resolve, reject) => {
+    database
+      .ref(`/state/last_post`)
+      .set(initialLastPost)
+      .then(() => {
+        console.log("Success!");
+        resolve();
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
+};
+
+// Erase all posts in database
+export const _eraseAllPosts = () => {
+  return new Promise((resolve, reject) => {
+    const time = timestamp();
+    database.ref(`/state/date_last_erased`).set(time);
+    database.ref("/posts").set(null);
+    const newPostRef = database.ref(`/posts`);
+    newPostRef.on("value", (snapshot) => {
+      console.log(snapshot.val());
+      resolve(snapshot.val());
+    });
   });
 };

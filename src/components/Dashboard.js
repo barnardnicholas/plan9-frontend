@@ -1,9 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import PostLog from "./PostLog";
-import Tweets from "./Tweets";
 import MasterControl from "./MasterControl";
-import UtilsPanel from "./UtilsPanel";
 
 export default function Dashboard() {
   return (
@@ -23,16 +21,12 @@ export default function Dashboard() {
       <section>
         <Container>
           <Row noGutters>
-            <Col xs={12} md={6} lg={8}>
+            <Col>
               <PostLog />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <Tweets />
             </Col>
           </Row>
         </Container>
       </section>
-      <UtilsPanel />
     </main>
   );
 }
